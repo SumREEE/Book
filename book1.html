@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *, 
+        *::before, 
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .containner {
+            width: 100%;
+            height: 1180px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .containner img {
+            width: 530px;
+        }
+
+        .title {
+            position: absolute;
+            top: 25%;
+            left: 40%;
+            transform: translate( -50%  , -50%);
+        }
+
+        .book img {
+            width: 620px;
+        }
+
+        .book {
+            position: absolute;
+            top: 50%; /* Start from the center */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: slideDown 1s ease forwards;
+        }
+
+        .exit {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10; /* Ensure it appears above other elements */
+        }
+
+        .exit img {
+            width: 80px;
+        }
+
+        .exit {
+            position: absolute;
+            top: 6%;
+            left: 91%;
+            transform: translate( -50%  , -50%);
+            cursor: pointer;
+        }
+
+        .read img {
+            width: 100px;
+        }
+
+        .read {
+            z-index: 99;
+            position: absolute;
+            top: 67%;
+            left: 60%;
+            transform: translate( -50%  , -50%);
+        }
+
+        @keyframes slideDown {
+            from {
+                top: 55%;
+                opacity: 0;
+            }
+            to {
+                top: 66%;
+                left: 60%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                top: 66%;
+                left: 60%;
+                opacity: 1;
+            }
+            to {
+                top: 55%;
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="containner">
+        <a href="B1.html">
+        <div class="read">
+            <img src="img/ICON_TAP TO READ.png" alt="">
+        </div>
+        </a>
+        <div class="book">
+            <img src="img/Book-1.png" alt="">
+        </div>
+        <div class="title">
+            <img src="img/textBook1.1.png" alt="">
+        </div>
+        <div class="exit" onclick="exitAnimation()">
+            <img src="img/exit.png" alt="">
+        </div>
+    </div>
+
+    <script>
+        function exitAnimation() {
+            const book = document.querySelector('.book');
+            book.style.animation = 'slideUp 1s ease forwards';
+            setTimeout(() => {
+                window.location.href = 'home.html';
+            }, 500);
+        }
+    </script>
+
+</body>
+</html>

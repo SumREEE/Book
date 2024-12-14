@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Swipe</title>
+
+    <style>
+        *, 
+        *::before, 
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .exit {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10; /* Ensure it appears above other elements */
+        }
+
+        .exit img {
+            width: 80px;
+        }
+
+        .exit {
+            position: absolute;
+            top: 6%;
+            left: 91%;
+            transform: translate( -50%  , -50%);
+            cursor: pointer;
+        }
+
+        .pa {
+            margin: auto 2rem;
+        }
+
+        .image-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img:first-child {
+        max-width: 900px;
+        max-height: 990px; 
+        margin-top: 6.5rem;
+    }
+
+        .image-container img {
+            max-width: 920px;
+            max-height: 980px;
+            object-fit: contain;
+            transition: box-shadow 0.3s ease;
+            margin-top: 6rem;
+        }
+
+        .image-container img.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="exit">
+        <a href="book3.html">
+        <img src="img/exit.png" alt="">
+        </a>
+    </div>
+
+    <div class="image-container">
+        
+        
+        <div class="pa">
+            
+            <img src="img/B3-1.png" alt="Image 1" class="active">
+            <img src="img/B3-2.png" alt="Image 2" class="hidden">
+            <img src="img/B3-3.png" alt="Image 3" class="hidden">
+            <img src="img/B3-4.png" alt="Image 4" class="hidden">
+            <img src="img/B3-5.png" alt="Image 5" class="hidden">
+            <img src="img/B3-6.png" alt="Image 6" class="hidden">
+            <img src="img/B3-7.png" alt="Image 7" class="hidden">
+            <img src="img/B3-8.png" alt="Image 8" class="hidden">
+            <img src="img/B3-9.png" alt="Image 9" class="hidden">
+            <img src="img/B3-10png" alt="Image 10" class="hidden">
+
+        </div>
+    </div>
+
+
+    <script>
+        const images = document.querySelectorAll('.image-container img');
+        let currentIndex = 0;
+        let startX = 0;
+        let endX = 0;
+
+        // Function to handle the swipe action
+        const handleSwipe = (direction) => {
+            if (direction === 'left' && currentIndex < images.length - 1) {
+                // Swipe left (next image)
+                images[currentIndex].classList.add('hidden');
+                currentIndex++;
+                images[currentIndex].classList.remove('hidden');
+            } else if (direction === 'right' && currentIndex > 0) {
+                // Swipe right (previous image)
+                images[currentIndex].classList.add('hidden');
+                currentIndex--;
+                images[currentIndex].classList.remove('hidden');
+            }
+        };
+
+        // Detect swipe direction
+        document.body.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX;
+        });
+
+        document.body.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].pageX;
+            if (startX - endX > 50) {
+                // Swiped left
+                handleSwipe('left');
+            } else if (endX - startX > 50) {
+                // Swiped right
+                handleSwipe('right');
+            }
+        });
+    </script>
+</body>
+</html>
