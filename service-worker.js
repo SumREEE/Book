@@ -13,6 +13,10 @@ const urlsToCache = [
     './img/Book-2.png.png',
     './img/Book-3.png.png',
     './img/Book-4.png.png',
+    './img/B1-1.png',
+    './img/B2-1.png',
+    './img/B3-1.png',
+    './img/B4-1.png',
     './manifest.json'
 ];
 
