@@ -166,6 +166,16 @@
             }
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const slideIndex = urlParams.get('slide');
+
+    // เปลี่ยนไปยังสไลด์ที่ระบุในพารามิเตอร์
+    if (slideIndex) {
+        swiper.slideTo(parseInt(slideIndex) - 1, 0); // slideTo(index, speed)
+    }
+});
+
         let inactivityTimer;
 
         function resetInactivityTimer() {

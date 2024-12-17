@@ -138,6 +138,22 @@
                 handleSwipe('right');
             }
         });
+
+        let inactivityTimer;
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                window.location.href = "index.html";
+            }, 15000);
+        }
+
+        window.onload = () => {
+            resetInactivityTimer();
+            document.addEventListener('mousemove', resetInactivityTimer);
+            document.addEventListener('keypress', resetInactivityTimer);
+            document.addEventListener('touchstart', resetInactivityTimer);
+        };
     </script>
 </body>
 </html>

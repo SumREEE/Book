@@ -124,33 +124,55 @@
 
     <div class="containner">
         <a href="B3.html">
-        <div class="read">
-            <img src="img/ICON_TAP TO READ.png" alt="">
-        </div>
+            <div class="read">
+                <img src="img/ICON_TAP TO READ.png" alt="">
+            </div>
         </a>
-        <div class="book">
+        <div id="book" class="book">
             <img src="img/Book-3.png" alt="">
         </div>
         <div class="title">
             <img src="img/textBook3.1.png" alt="">
         </div>
-        <div class="exit" onclick="exitAnimation()">
-            <img src="img/exit.png" alt="">
-        </div>
-        <div class="QRcode" >
+        <a href="home.html?slide=3" id="exitLink">
+            <div class="exit">
+                <img src="img/exit.png" alt="">
+            </div>
+        </a>
+        <div class="QRcode">
             <img src="img/QRcode3.png" alt="">
         </div>
     </div>
 
     <script>
-        function exitAnimation() {
-            const book = document.querySelector('.book');
-            book.style.animation = 'slideUp 1s ease forwards';
-            setTimeout(() => {
-                window.location.href = 'home.html';
-            }, 500);
-        }
-    </script>
+        // Add event listener to the exit link
+        document.getElementById('exitLink').addEventListener('click', function(e) {
+            e.preventDefault();  // Prevent the default behavior of the anchor tag
+            
+            // Trigger the slide-up animation for the book
+            var book = document.getElementById('book');
+            book.classList.add('animate-slideUp');
+            
+            // Simulate navigation after animation completes (1 second in this case)
+            setTimeout(function() {
+                window.location.href = e.target.closest('a').href;
+            }, 500); // Delay the page load until after the animation
+        });
+        let inactivityTimer;
 
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => {
+                window.location.href = "index.html";
+            }, 15000);
+        }
+
+        window.onload = () => {
+            resetInactivityTimer();
+            document.addEventListener('mousemove', resetInactivityTimer);
+            document.addEventListener('keypress', resetInactivityTimer);
+            document.addEventListener('touchstart', resetInactivityTimer);
+        };
+    </script>
 </body>
 </html>
